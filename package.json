@@ -1,0 +1,23 @@
+{
+  "name": "hethongweb_doan",
+  "version": "1.0.0",
+  "description": "Do an cua kimchi ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-rang/HeThongWeb_DoAn.git"
+  },
+  "keywords": [
+    "HeThongWeb",
+    "Init"
+  ],
+  "author": "Kimchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t-rang/HeThongWeb_DoAn/issues"
+  },
+  "homepage": "https://github.com/t-rang/HeThongWeb_DoAn#readme"
+}
