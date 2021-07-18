@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
 const CourseSchema = mongoose.model('Course');
 
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
     const { title, image, desc, duration, practice, students } = req.body;
     const course = await CourseSchema.findOne({ title });
     if (course) {
@@ -31,10 +31,9 @@ router.delete('/:id', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
     const id = req.params.id;
-    const { title, image, desc, duration, practice, students } = req.body;
     const course = await CourseSchema.findById(ObjectId(id));
     if (course) {
-        const target = Object.assign(course, req.body);
+        Object.assign(course, req.body);
         const updatedCourse = await course.save();
         return res.status(200).send({ message: "Đã cập nhật khoá " + updatedCourse.title });
     };
@@ -48,5 +47,19 @@ router.post('/search', async (req, res) => {
     );
     return res.status(200).send(result);
 });
+
+router.get('/', async function (req, res) {
+    const allCourses = await CourseSchema.find();
+    return res.status(200).send(allCourses);
+})
+
+router.get('/:id', async function (req, res) {
+    const id = req.params.id;
+    const course = await CourseSchema.findById(ObjectId(id));
+    if (!course) {
+        return res.status(404).send({ message: "Lỗi. Khoá không tồn tại." });
+    }
+    return res.status(200).send(course);
+})
 
 module.exports = router;

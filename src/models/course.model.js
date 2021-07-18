@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 const CourseSchema = new Schema({
     id: ObjectId,
     title: String,
-    image: String,
+    img: String,
     desc: String,
     duration: Number,
     practice: Number,
