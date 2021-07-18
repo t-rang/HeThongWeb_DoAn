@@ -5,7 +5,6 @@ const UserSchema = mongoose.model('User');
 
 router.post('/register', async (req, res) => {
 	const { username, password, role } = req.body;
-	// console.log({ username, password, role });
 	const user = await UserSchema.findOne({ username });
 
 	if (user) {

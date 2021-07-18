@@ -8,4 +8,5 @@ const UserSchema = new Schema({
     password: String,
     role: String,
 });
+
 mongoose.model('User', UserSchema);

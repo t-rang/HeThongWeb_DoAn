@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/hethongweb', {
 	useCreateIndex: true
 });
 require('./models/user.model');
+require('./models/course.model');
 
 const routers = require('./routers');
 app.use(routers);
