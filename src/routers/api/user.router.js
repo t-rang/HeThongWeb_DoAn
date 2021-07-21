@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 	}
 
 	const createdUser = await UserSchema.create({
-		username, password, role: 'user',
+		name, email, username, password: 'user',
 	});
 	console.log({ createdUser });
 	return res.status(200).send(createdUser);
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
 		res.status(200).send({ message: "Xin chào " + user.role + " " + user.username, user });
 		return;
 	}
-
+	// return res.send({ message: "Username hoặc password sai. Vui lòng nhập lại." });
 	return res.status(404).send({ message: "Username hoặc password sai. Vui lòng nhập lại." });
 });
 
