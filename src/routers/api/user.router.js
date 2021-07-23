@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.model('User');
 
 router.post('/register', async (req, res) => {
-	const { fullname, email, username, password, role } = req.body;
+	const { fullname, email, username, password } = req.body;
 	const user = await UserSchema.findOne({ username });
 
 	if (user) {
@@ -13,10 +13,9 @@ router.post('/register', async (req, res) => {
 	}
 
 	const createdUser = await UserSchema.create({
-		fullname, email, username, password: 'user',
+		fullname, email, username, password
 	});
-	console.log({ createdUser });
-	return res.status(200).send(createdUser);
+	return res.status(200).send({ message: "Đăng ký thành công. Mời bạn đăng nhập với username " + username });
 });
 
 router.post('/login', async (req, res) => {
@@ -24,10 +23,8 @@ router.post('/login', async (req, res) => {
 	const user = await UserSchema.findOne({ username });
 
 	if (user && user.password === password) {
-		res.status(200).send({ message: "Xin chào " + user.role + " " + user.username, user });
-		return;
+		return res.status(200).send(user);
 	}
-	// return res.send({ message: "Username hoặc password sai. Vui lòng nhập lại." });
 	return res.status(404).send({ message: "Username hoặc password sai. Vui lòng nhập lại." });
 });
 
