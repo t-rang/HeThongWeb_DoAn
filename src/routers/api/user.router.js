@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.model('User');
 
 router.post('/register', async (req, res) => {
-	const { username, password, role } = req.body;
+	const { fullname, email, username, password, role } = req.body;
 	const user = await UserSchema.findOne({ username });
 
 	if (user) {
@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 	}
 
 	const createdUser = await UserSchema.create({
-		name, email, username, password: 'user',
+		fullname, email, username, password: 'user',
 	});
 	console.log({ createdUser });
 	return res.status(200).send(createdUser);
