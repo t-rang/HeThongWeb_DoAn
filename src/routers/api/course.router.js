@@ -5,14 +5,14 @@ const { ObjectId } = require('mongodb');
 const CourseSchema = mongoose.model('Course');
 
 router.post('/', async (req, res) => {
-    const { title, image, desc, duration, practice, students } = req.body;
+    const { title, img, desc, duration, practice, students } = req.body;
     const course = await CourseSchema.findOne({ title });
     if (course) {
         res.status(404).send({ message: "Tên khoá này đã tồn tại. Vui lòng chọn tên khoá khác." });
         return;
     }
     const createdCourse = await CourseSchema.create({
-        title, image, desc, duration, practice, students
+        title, img, desc, duration, practice, students
     });
     return res.status(200).send(createdCourse);
 });
